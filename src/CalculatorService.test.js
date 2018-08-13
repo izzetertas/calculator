@@ -1,6 +1,6 @@
 import CalculatorService from './CalculatorService'
 
-describe('Calculator', () => {
+describe('CalculatorService', () => {
   let calculator;
   beforeEach(() => {
     calculator = new CalculatorService()

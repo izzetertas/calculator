@@ -25,18 +25,20 @@ class Calculator extends Component {
     const selectedValue = e.target.value;
 
     if (this.operators.includes(selectedValue)) {
-      this.setState((previousState) => ({
+      this.setState((previousState) => {
+        const newNumbers = [...previousState.numbers, parseFloat(previousState.output)]
+        return {
           operand: selectedValue,
-          numbers : [...previousState.numbers, parseFloat(previousState.output)],
+          numbers : newNumbers,
           output: '',
-          history: ''
-        })
-      )
+          history: this.setResultMessage(selectedValue, newNumbers)
+        }
+      })
     }
     else if(this.numbers.includes(selectedValue)){
       this.setState((previousState) => ({
-        output: !previousState.completed ? (previousState.output + selectedValue) : selectedValue,
-        history: ''
+        output: previousState.output + selectedValue,
+        // history: ''
       }))
     }
     else if (selectedValue === '=') {
@@ -62,7 +64,7 @@ class Calculator extends Component {
     })
   }
 
-  setResultMessage = (operand, numbers, output) => `(${numbers[0]} ${operand} ${numbers[1]})`
+  setResultMessage = (operand, numbers) => `(${numbers[0]} ${operand} ${numbers[1] || ''})`
 
   render(){
     const { history, output, completed: disabled } = this.state;
