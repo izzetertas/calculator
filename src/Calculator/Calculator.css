@@ -1,0 +1,51 @@
+.container {
+  margin: 50px auto;
+  width: 320px;
+  padding: 5px;
+  border: 1px solid green;
+}
+
+.button {
+  width: 24%;
+  height: 50px;
+  margin: 1px;
+}
+
+.result {
+  display: flex;
+  width: 100%;
+  text-align: right;
+  flex-direction: column;
+}
+
+.output-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.output {
+  width: 95%;
+  height: 44px;
+  margin-right: 5px;
+  font-size: 24px;
+  text-align: right; 
+}
+
+.ac-button-wrapper {
+  width: 30%;
+}
+
+.ac-button-wrapper .button {
+  width: 100%;
+  background-color: cornflowerblue;
+}
+
+.label {
+  font-size: 12px;
+  text-align: right; 
+  width: 98%;
+  border: 1px solid #dacfcf;
+  margin-bottom: 5px;
+  padding: 3px 0;
+  color: #d63232;
+}
