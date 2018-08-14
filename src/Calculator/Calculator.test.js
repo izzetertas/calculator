@@ -69,5 +69,27 @@ describe('<Calculator/>', () => {
       expect(wrapper.state('output')).toEqual('12')
     });
   });
+
+  describe('when click an operand', () => {
+    it('should assign operand correctly', () => {
+      const component = wrapper.find('Button').find({ label : '+'})
+      component.simulate('click', { target: { value: '+' } })
+      expect(wrapper.state('operand')).toEqual('+')
+    });
+  });
+
+  describe('when click to equal button', () => {
+    it('should calculate result and output correctly', () => {
+      wrapper.setState({
+        numbers: ['10', '2'],
+        operand: '/'
+      })
+      const component = wrapper.find('Button').find({ label : '='})
+      component.simulate('click', { target: { value: '=' } })
+      expect(wrapper.state('output')).toEqual('5.00')
+      expect(wrapper.state('history')).toEqual('(10 / 2)')
+    });
+
+  });
   
 });
