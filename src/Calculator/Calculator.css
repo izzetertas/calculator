@@ -37,7 +37,8 @@
 
 .ac-button-wrapper .button {
   width: 100%;
-  background-color: cornflowerblue;
+  background-color: #1795d4;
+  color: white;
 }
 
 .label {
