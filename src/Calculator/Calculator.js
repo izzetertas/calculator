@@ -9,7 +9,8 @@ class Calculator extends Component {
     output: '0',
     currentNumber: '0',
     firstNumber: null,
-    operand: ''
+    operand: '',
+    isPressedEqual: false
   }
 
   state = this.initialState
@@ -36,18 +37,19 @@ class Calculator extends Component {
     const input = e.target.value;
 
     if (this.isOperand(input)) {
-      const { output, operand, currentNumber, firstNumber } = this.state
+      const { output, operand, currentNumber, firstNumber, isPressedEqual } = this.state
       
-      const allNumbers = this.getAllInputs // currentNumber ? [firstNumber, currentNumber] : [firstNumber]
+      const allNumbers = this.getAllInputs
       if(!allNumbers) return
 
-      if(!operand){  
+      if(!operand || isPressedEqual){  
         const newOperandParameterLength = CalculatorService.getOperandParameterLength(input)
         if(newOperandParameterLength > allNumbers.length)
           return this.setState({ 
             firstNumber: currentNumber ? parseFloat(currentNumber) : parseFloat(firstNumber),
             operand: input,
-            currentNumber: ''
+            currentNumber: '',
+            isPressedEqual: false
           })
 
         if(newOperandParameterLength === allNumbers.length){
@@ -91,8 +93,18 @@ class Calculator extends Component {
       }
     }
     else if(this.isValidNumber(input)){
-      const { output, operand, currentNumber } = this.state
+      const { output, operand, currentNumber, isPressedEqual } = this.state
       if(output === 0 && input === '0') return
+
+      if(isPressedEqual && !currentNumber) {
+        return this.setState({
+          currentNumber: input,
+          firstNumber: null,
+          operand: '',
+          isPressedEqual: false,
+          output: input,
+        })
+      }
 
       if(operand && !currentNumber) {
         return this.setState((previousState) => ({
@@ -113,7 +125,8 @@ class Calculator extends Component {
         const allNumbers = [firstNumber, firstNumber]
         const result = this.calculateResult(operand, allNumbers)
         return this.setState({
-          operand: '',
+          // operand: '=',
+          isPressedEqual: true,
           currentNumber: '',
           output: result,
           history: this.getResultMessage(operand, allNumbers, output),
@@ -123,7 +136,8 @@ class Calculator extends Component {
       const allNumbers = this.getAllInputs
       const result = this.calculateResult(operand, allNumbers)
       this.setState({
-        operand: '',
+        // operand: '=',
+        isPressedEqual: true,
         currentNumber: '',
         output: result,
         history: this.getResultMessage(operand, allNumbers, output),

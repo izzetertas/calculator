@@ -13,7 +13,8 @@ describe('<Calculator/>', () => {
       output: '0',
       currentNumber: '0',
       firstNumber: null,
-      operand: ''
+      operand: '',
+      isPressedEqual: false
     }
     wrapper = shallow(<Calculator />)
   })
