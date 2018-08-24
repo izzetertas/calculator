@@ -2,13 +2,14 @@
   margin: 50px auto;
   width: 320px;
   padding: 5px;
-  border: 1px solid green;
+  border: 1px solid #1795d4;
 }
 
 .button {
   width: 24%;
   height: 50px;
   margin: 1px;
+  border: 1px solid #1795d4;
 }
 
 .result {

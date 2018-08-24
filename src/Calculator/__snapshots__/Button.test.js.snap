@@ -3,7 +3,6 @@
 exports[`<Button /> should render an input 1`] = `
 <input
   className="button"
-  disabled={true}
   onClick={[Function]}
   type="button"
 />
