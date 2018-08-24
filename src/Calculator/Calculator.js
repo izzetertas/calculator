@@ -25,7 +25,7 @@ class Calculator extends Component {
   isOperand = (operand) => this.operators.includes(operand)  
   isValidNumber = (value) => this.numbers.includes(value)  
 
-  get getAllInputs() {
+  get getinputs() {
     const { firstNumber, currentNumber } = this.state
     const arr = []
     if(firstNumber !== null) arr.push(firstNumber)
@@ -39,12 +39,12 @@ class Calculator extends Component {
     if (this.isOperand(input)) {
       const { output, operand, currentNumber, firstNumber, isPressedEqual } = this.state
       
-      const allNumbers = this.getAllInputs
-      if(!allNumbers) return
+      const inputs = this.getinputs
+      if(!inputs) return
 
       if(!operand || isPressedEqual){  
         const newOperandParameterLength = CalculatorService.getOperandParameterLength(input)
-        if(newOperandParameterLength > allNumbers.length)
+        if(newOperandParameterLength > inputs.length)
           return this.setState({ 
             firstNumber: currentNumber ? parseFloat(currentNumber) : parseFloat(firstNumber),
             operand: input,
@@ -52,42 +52,42 @@ class Calculator extends Component {
             isPressedEqual: false
           })
 
-        if(newOperandParameterLength === allNumbers.length){
-          const result = this.calculateResult(input, allNumbers)
+        if(newOperandParameterLength === inputs.length){
+          const result = this.calculateResult(input, inputs)
           return this.setState({
             operand: input,
             firstNumber: parseFloat(result),
             currentNumber: '',
             output: result,
-            history: this.getResultMessage(operand, allNumbers, output)
+            history: this.getResultMessage(operand, inputs, output)
           })
         }
       }
       
       const operandParameterLength = CalculatorService.getOperandParameterLength(operand)
-      if(operandParameterLength === allNumbers.length) {
-        const result = this.calculateResult(operand, allNumbers)
+      if(operandParameterLength === inputs.length) {
+        const result = this.calculateResult(operand, inputs)
         return this.setState({
           operand: input,
           firstNumber: parseFloat(result),
           currentNumber: '',
           output: result,
-          history: this.getResultMessage(operand, allNumbers, output)
+          history: this.getResultMessage(operand, inputs, output)
         })    
       }
-      else if(operandParameterLength > allNumbers.length) {
+      else if(operandParameterLength > inputs.length) {
         const newOperandParameterLength = CalculatorService.getOperandParameterLength(input)
-        if(newOperandParameterLength > allNumbers.length) {
+        if(newOperandParameterLength > inputs.length) {
           return this.setState({ operand: input, currentNumber: '' })        
         }
-        if(newOperandParameterLength === allNumbers.length) {
-          const result = this.calculateResult(input, allNumbers)
+        if(newOperandParameterLength === inputs.length) {
+          const result = this.calculateResult(input, inputs)
           return this.setState({
             operand: input,
             firstNumber: parseFloat(result),
             currentNumber: '',
             output: result,
-            history: this.getResultMessage(operand, allNumbers, output)
+            history: this.getResultMessage(operand, inputs, output)
           })      
         }
       }
@@ -122,25 +122,25 @@ class Calculator extends Component {
       if(!operand || !firstNumber) return
       
       if(firstNumber !== null && !currentNumber) {
-        const allNumbers = [firstNumber, firstNumber]
-        const result = this.calculateResult(operand, allNumbers)
+        const inputs = [firstNumber, firstNumber]
+        const result = this.calculateResult(operand, inputs)
         return this.setState({
           // operand: '=',
           isPressedEqual: true,
           currentNumber: '',
           output: result,
-          history: this.getResultMessage(operand, allNumbers, output),
+          history: this.getResultMessage(operand, inputs, output),
           firstNumber: parseFloat(result)
         })
       }
-      const allNumbers = this.getAllInputs
-      const result = this.calculateResult(operand, allNumbers)
+      const inputs = this.getinputs
+      const result = this.calculateResult(operand, inputs)
       this.setState({
         // operand: '=',
         isPressedEqual: true,
         currentNumber: '',
         output: result,
-        history: this.getResultMessage(operand, allNumbers, output),
+        history: this.getResultMessage(operand, inputs, output),
         firstNumber: parseFloat(result)
       })  
     }

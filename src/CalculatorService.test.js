@@ -29,4 +29,19 @@ describe('CalculatorService', () => {
   it('should multiple numbers correctly', () => {
     expect(calculator.calculate('*', 15, 3)).toEqual(45)
   });
+
+  describe('getOperandParameterLength method', () => {
+    it('should return input parameters correctly', () => {
+      expect(CalculatorService.getOperandParameterLength('/')).toEqual(2)
+      expect(CalculatorService.getOperandParameterLength('*')).toEqual(2)
+      expect(CalculatorService.getOperandParameterLength('+')).toEqual(2)
+      expect(CalculatorService.getOperandParameterLength('-')).toEqual(2)
+    });
+  
+    describe('When passed unknown operand, ', () => {
+      it('should thrown error correctly', () => {
+        expect(() => CalculatorService.getOperandParameterLength('@')).toThrowError('The length of operand parameter must be defined')
+      });
+    });
+  });
 });
