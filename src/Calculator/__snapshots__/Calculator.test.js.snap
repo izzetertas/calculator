@@ -99,5 +99,15 @@ exports[`<Calculator/> should render correctly 1`] = `
       onClick={[Function]}
     />
   </div>
+  <div>
+    <Button
+      label="MR"
+      onClick={[Function]}
+    />
+    <Button
+      label="M+"
+      onClick={[Function]}
+    />
+  </div>
 </div>
 `;

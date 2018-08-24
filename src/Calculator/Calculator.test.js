@@ -14,14 +14,16 @@ describe('<Calculator/>', () => {
       currentNumber: '0',
       firstNumber: null,
       operand: '',
-      isPressedEqual: false
+      isClickedEqual: false,
+      isPressedEqual: false,
+      memoryRecordedNumber: 0
     }
     wrapper = shallow(<Calculator />)
   })
 
   it('should render correctly', () => {
       expect(toJson(wrapper)).toMatchSnapshot();
-      expect(wrapper.find('Button').length).toBe(17)
+      expect(wrapper.find('Button').length).toBe(19)
       expect(wrapper.find('input').find({type: 'text'}).text()).toEqual('')
   });
 
