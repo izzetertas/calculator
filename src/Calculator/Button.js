@@ -1,11 +1,10 @@
 import React from 'react'
 
-const Button = ({ label, onClick, disabled }) => (
+const Button = ({ label, onClick }) => (
   <input
     type='button'
     onClick={onClick}
     value={label}
-    disabled={disabled}
     className='button'
   />
 )

@@ -10,10 +10,10 @@ describe('<Calculator/>', () => {
   beforeEach(() => {
     initialState = {
       history: '',
-      output: '',
-      numbers: [],
-      operand: '',
-      completed: false
+      output: '0',
+      currentNumber: '0',
+      firstNumber: null,
+      operand: ''
     }
     wrapper = shallow(<Calculator />)
   })
@@ -39,7 +39,7 @@ describe('<Calculator/>', () => {
 
   it('should assign output correctly', () => {
     let component = wrapper.find('input').find({type: 'text'}) 
-    expect(component.prop('value')).toEqual('')
+    expect(component.prop('value')).toEqual('0')
     expect(component.prop('className')).toEqual('output')
     const expected = '12.45'
     wrapper.setState({ output: expected })
@@ -63,10 +63,10 @@ describe('<Calculator/>', () => {
     it('should assign output correctly', () => {
       const component = wrapper.find('Button').find({ label : '1'})
       component.simulate('click', { target: { value: '1' } })
-      expect(wrapper.state('output')).toEqual('1')
+      expect(wrapper.state('output')).toEqual(1)
 
       component.simulate('click', { target: { value: '2' } })
-      expect(wrapper.state('output')).toEqual('12')
+      expect(wrapper.state('output')).toEqual(12)
     });
   });
 
@@ -81,7 +81,8 @@ describe('<Calculator/>', () => {
   describe('when click to equal button', () => {
     it('should calculate result and output correctly', () => {
       wrapper.setState({
-        numbers: ['10', '2'],
+        firstNumber: 10,
+        currentNumber: '2',
         operand: '/'
       })
       const component = wrapper.find('Button').find({ label : '='})
