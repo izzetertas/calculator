@@ -20,7 +20,6 @@ describe('<Calculator/>', () => {
   })
 
   it('should render correctly', () => {
-      // const wrapper = shallow(<Calculator />)
       expect(toJson(wrapper)).toMatchSnapshot();
       expect(wrapper.find('Button').length).toBe(17)
       expect(wrapper.find('input').find({type: 'text'}).text()).toEqual('')

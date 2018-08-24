@@ -38,8 +38,14 @@ describe('CalculatorService', () => {
       expect(CalculatorService.getOperandParameterLength('-')).toEqual(2)
     });
   
+    describe('When passed empty operand, ', () => {
+      it('should return zero', () => {
+        expect(CalculatorService.getOperandParameterLength('')).toEqual(0)
+      });
+    });
+
     describe('When passed unknown operand, ', () => {
-      it('should thrown error correctly', () => {
+      it('should thrown error', () => {
         expect(() => CalculatorService.getOperandParameterLength('@')).toThrowError('The length of operand parameter must be defined')
       });
     });

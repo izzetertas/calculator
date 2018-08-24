@@ -125,7 +125,6 @@ class Calculator extends Component {
         const inputs = [firstNumber, firstNumber]
         const result = this.calculateResult(operand, inputs)
         return this.setState({
-          // operand: '=',
           isPressedEqual: true,
           currentNumber: '',
           output: result,
@@ -136,7 +135,6 @@ class Calculator extends Component {
       const inputs = this.getinputs
       const result = this.calculateResult(operand, inputs)
       this.setState({
-        // operand: '=',
         isPressedEqual: true,
         currentNumber: '',
         output: result,
