@@ -1,11 +1,11 @@
 import React from 'react'
-
-const Button = ({ label, onClick }) => (
+import classnames from 'classnames'
+const Button = ({ label, onClick, className }) => (
   <input
     type='button'
     onClick={onClick}
     value={label}
-    className='button'
+    className={classnames('button', className)}
   />
 )
 

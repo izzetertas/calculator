@@ -31,15 +31,19 @@ class Calculator extends Component {
 
   handleOnMemoryButton = (e) => {
     const input = e.target.value;
-    const { currentNumber, memoryRecordedNumber } = this.state
+    const { output, memoryRecordedNumber=0 } = this.state
     if(input === 'MR') {
       this.setState({
-        currentNumber: memoryRecordedNumber,
-        output: memoryRecordedNumber
+        currentNumber: memoryRecordedNumber || 0,
+        output: memoryRecordedNumber  || 0
       })
     } else if(input === 'M+') {
       this.setState({
-        memoryRecordedNumber : parseFloat(currentNumber) + memoryRecordedNumber
+        memoryRecordedNumber : parseFloat(output) + (memoryRecordedNumber  || 0)
+      })
+    } else if(input === 'MC') {
+      this.setState({
+        memoryRecordedNumber : 0
       })
     }
 
@@ -171,50 +175,44 @@ class Calculator extends Component {
 
     return (
       <div className='container'>
-        <div className='result'>
-          {
-            history && 
-            <div className='label'>
-              {history}
-            </div>
-          }
-            
-          <div className='output-container'>
-            <div className='ac-button-wrapper'>
-              <Button label={'AC'} onClick={this.handleOnClear} />
-            </div>
-            <div>
-              <input type='text' value={output} className='output' />
-            </div>
+        {
+          history && 
+          <div className='history'>
+            {history}
           </div>
-        </div>
-        <div>
-          <Button label={'7'} onClick={this.handleOnClickNumber} />
-          <Button label={'8'} onClick={this.handleOnClickNumber} />
-          <Button label={'9'} onClick={this.handleOnClickNumber} />
-          <Button label={'/'} onClick={this.handleOnClickOperand} />
-        </div>
-        <div>
-          <Button label={'4'} onClick={this.handleOnClickNumber} />
-          <Button label={'5'} onClick={this.handleOnClickNumber} />
-          <Button label={'6'} onClick={this.handleOnClickNumber} />
-          <Button label={'*'} onClick={this.handleOnClickOperand} />
-        </div>
-        <div>
-          <Button label={'1'} onClick={this.handleOnClickNumber} />
-          <Button label={'2'} onClick={this.handleOnClickNumber} />
-          <Button label={'3'} onClick={this.handleOnClickNumber} />
-          <Button label={'-'} onClick={this.handleOnClickOperand} />
-        </div>
-        <div>
-          <Button label={'0'} onClick={this.handleOnClickNumber} />
-          <Button label={'.'} onClick={this.handleOnClickNumber} />
-          <Button label={'='} onClick={this.handleOnClickEqual} />
-          <Button label={'+'} onClick={this.handleOnClickOperand} />
-        </div>
-        <div>
-          <Button label={'MR'} onClick={this.handleOnMemoryButton} />
-          <Button label={'M+'} onClick={this.handleOnMemoryButton} />
+        }
+        <input type='text' value={output} />
+        <div className='button-container'>
+          <div>
+            <Button label={'C'} onClick={this.handleOnClear} className='clean-button' />
+            <Button label={'MC'} onClick={this.handleOnMemoryButton} />
+            <Button label={'MR'} onClick={this.handleOnMemoryButton} />
+            <Button label={'M+'} onClick={this.handleOnMemoryButton} />
+          </div>
+          <div>
+            <Button label={'7'} onClick={this.handleOnClickNumber} />
+            <Button label={'8'} onClick={this.handleOnClickNumber} />
+            <Button label={'9'} onClick={this.handleOnClickNumber} />
+            <Button label={'/'} onClick={this.handleOnClickOperand} />
+          </div>
+          <div>
+            <Button label={'4'} onClick={this.handleOnClickNumber} />
+            <Button label={'5'} onClick={this.handleOnClickNumber} />
+            <Button label={'6'} onClick={this.handleOnClickNumber} />
+            <Button label={'*'} onClick={this.handleOnClickOperand} />
+          </div>
+          <div>
+            <Button label={'1'} onClick={this.handleOnClickNumber} />
+            <Button label={'2'} onClick={this.handleOnClickNumber} />
+            <Button label={'3'} onClick={this.handleOnClickNumber} />
+            <Button label={'-'} onClick={this.handleOnClickOperand} />
+          </div>
+          <div>
+            <Button label={'0'} onClick={this.handleOnClickNumber} />
+            <Button label={'.'} onClick={this.handleOnClickNumber} />
+            <Button label={'='} onClick={this.handleOnClickEqual} />
+            <Button label={'+'} onClick={this.handleOnClickOperand} />
+          </div>
         </div>
       </div>
     )
