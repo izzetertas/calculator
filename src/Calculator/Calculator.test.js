@@ -15,7 +15,6 @@ describe('<Calculator/>', () => {
       firstNumber: null,
       operand: '',
       isClickedEqual: false,
-      isPressedEqual: false,
       memoryRecordedNumber: 0
     }
     wrapper = shallow(<Calculator />)
@@ -23,7 +22,7 @@ describe('<Calculator/>', () => {
 
   it('should render correctly', () => {
       expect(toJson(wrapper)).toMatchSnapshot();
-      expect(wrapper.find('Button').length).toBe(19)
+      expect(wrapper.find('Button').length).toBe(20)
       expect(wrapper.find('input').find({type: 'text'}).text()).toEqual('')
   });
 
@@ -31,10 +30,10 @@ describe('<Calculator/>', () => {
     expect(wrapper.state()).toEqual(initialState)
   });
 
-  describe('when user clicks AC button', () => {
+  describe('when user clicks C button', () => {
     it('should reset to initial state', () => {
       wrapper.setState({ history: '...' })
-      wrapper.find('Button').find({ label : 'AC'}).simulate('click')
+      wrapper.find('Button').find({ label : 'C'}).simulate('click')
       expect(wrapper.state()).toEqual(initialState)
     });
   });
@@ -42,7 +41,6 @@ describe('<Calculator/>', () => {
   it('should assign output correctly', () => {
     let component = wrapper.find('input').find({type: 'text'}) 
     expect(component.prop('value')).toEqual('0')
-    expect(component.prop('className')).toEqual('output')
     const expected = '12.45'
     wrapper.setState({ output: expected })
 
@@ -54,10 +52,10 @@ describe('<Calculator/>', () => {
     let component = wrapper.find('div').find({className: 'label'}) 
     expect(component.length).toBe(0)
 
-    const expected = ' 2 * 12.5 = 25'
+    const expected = ' 2 * 12.5'
     wrapper.setState({ history: expected })
 
-    component = wrapper.find('div').find({className: 'label'}) 
+    component = wrapper.find('div').find({className: 'history'}) 
     expect(component.text()).toEqual(expected) 
   });
 

@@ -4,32 +4,32 @@ exports[`<Calculator/> should render correctly 1`] = `
 <div
   className="container"
 >
-  <div
-    className="result"
-  >
-    <div
-      className="output-container"
-    >
-      <div
-        className="ac-button-wrapper"
-      >
-        <Button
-          label="AC"
-          onClick={[Function]}
-        />
-      </div>
-      <div>
-        <input
-          className="output"
-          type="text"
-          value="0"
-        />
-      </div>
-    </div>
-  </div>
+  <input
+    type="text"
+    value="0"
+  />
   <div
     className="button-container"
   >
+    <div>
+      <Button
+        className="clean-button"
+        label="C"
+        onClick={[Function]}
+      />
+      <Button
+        label="MC"
+        onClick={[Function]}
+      />
+      <Button
+        label="MR"
+        onClick={[Function]}
+      />
+      <Button
+        label="M+"
+        onClick={[Function]}
+      />
+    </div>
     <div>
       <Button
         label="7"
@@ -99,16 +99,6 @@ exports[`<Calculator/> should render correctly 1`] = `
       />
       <Button
         label="+"
-        onClick={[Function]}
-      />
-    </div>
-    <div>
-      <Button
-        label="MR"
-        onClick={[Function]}
-      />
-      <Button
-        label="M+"
         onClick={[Function]}
       />
     </div>

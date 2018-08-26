@@ -11,7 +11,6 @@ class Calculator extends Component {
     firstNumber: null,
     operand: '',
     isClickedEqual: false,
-    isPressedEqual: false,
     memoryRecordedNumber: 0
   }
 
@@ -82,7 +81,7 @@ class Calculator extends Component {
     const { firstNumber, currentNumber, operand, output } = this.state
     if(!operand || !firstNumber) return
     
-    if(firstNumber !== null && !currentNumber) {
+    if(firstNumber !== null && currentNumber == null) {
       const inputs = [firstNumber, firstNumber]
       const result = this.calculateResult(operand, inputs)
       return this.setState({
